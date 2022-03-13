@@ -1,0 +1,44 @@
+// add fonts
+
+@font-face {
+    font-family: "Nunito-Light";
+    src: url("/fonts/Nunito-Light.woff2") format("woff2"),
+        url("/fonts/Nunito-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nunito-Medium";
+    src: url("/fonts/Nunito-Medium.woff2") format("woff2"),
+        url("/fonts/Nunito-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Cutive-Regular";
+    src: url("/fonts/Cutive-Regular.woff2") format("woff2"),
+        url("/fonts/Cutive-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+// font mixins
+@mixin font-nunito-light {
+    font-family: "Nunito-Light", sans-serif;
+    font-weight: 300;
+}
+
+@mixin font-nunito-medium {
+    font-family: "Nunito-Medium", sans-serif;
+    font-weight: 500;
+}
+
+@mixin font-cutive-regular {
+    font-family: "Cutive-Regular", sans-serif;
+    font-weight: 400;
+}

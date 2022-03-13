@@ -1,0 +1,31 @@
+header {
+    padding-top: rem(35);
+    .logo {
+        width: rem(224);
+        margin: auto;
+        a {
+            height: 100%;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+            path {
+                fill: $light-blue;
+            }
+        }
+    }
+    nav {
+        padding-top: rem(85);
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            color: $light-blue;
+            text-transform: uppercase;
+            @include font(20, 5, 30);
+        }
+    }
+}

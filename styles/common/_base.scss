@@ -1,0 +1,10 @@
+html {
+    background-color: $bright-purple;
+    @include font-nunito-light;
+}
+
+.wrapper {
+    max-width: rem(1200);
+    padding: 0 rem(75);
+    margin: auto;
+}

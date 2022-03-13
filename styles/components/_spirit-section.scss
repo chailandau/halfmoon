@@ -1,0 +1,14 @@
+.spirit-section {
+    background-color: $md-purple;
+    .cloud {
+        margin-top: rem(150);
+        width: 100%;
+        svg {
+            margin-top: rem(-150);
+            width: 100%;
+            path {
+                fill: $md-purple;
+            }
+        }
+    }
+}
