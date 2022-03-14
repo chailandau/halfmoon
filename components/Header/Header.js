@@ -14,7 +14,7 @@ let scrollTop = () => {
 const Header = () => {
   return (
     <header>
-      <div className="wrapper">
+      <div className="big-wrapper">
         <div className="logo">
           <a onClick={scrollTop}>
             <Logo />

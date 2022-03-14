@@ -1,14 +1,47 @@
 .spirit-section {
-    background-color: $md-purple;
-    .cloud {
-        margin-top: rem(150);
+    position: relative;
+    margin-top: rem(100);
+    &:nth-of-type(odd) {
+        &:before {
+            background-image: url(/img/cloud-light.svg);
+        }
+        background-color: $md-purple;
+    }
+    &:nth-of-type(even) {
+        &:before {
+            background-image: url(/img/cloud-dark.svg);
+        }
+        background-color: $dark-purple;
+    }
+    &:before {
+        display: block;
+        content: "";
+        position: absolute;
         width: 100%;
-        svg {
-            margin-top: rem(-150);
-            width: 100%;
-            path {
-                fill: $md-purple;
-            }
+        height: rem(100);
+        top: rem(-100);
+        left: 0;
+        z-index: -1;
+        background-repeat: repeat-x;
+        background-size: rem(1740) rem(260);
+    }
+
+    .spirit-title {
+        @include font(30, 5, 40);
+        color: $light-blue;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: rem(15);
+        &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            width: rem(65);
+            height: rem(2);
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            background: $light-blue;
         }
     }
 }
