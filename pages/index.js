@@ -1,12 +1,10 @@
 /* eslint-disable max-len */
-import Section from "../components/Spirits/Section";
+import Drinks from "../components/Spirits/Drinks";
+
 const Home = () => {
   return (
     <div>
-      <Section 
-        name="Whiskey"
-      />
-
+      <Drinks />
     </div>
   );
 };
