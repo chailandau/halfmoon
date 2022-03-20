@@ -8,7 +8,7 @@ const Menu = () => {
           <Link
             to="whiskey"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Whiskey
@@ -18,7 +18,7 @@ const Menu = () => {
           <Link
             to="tequila"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Tequila
@@ -28,7 +28,7 @@ const Menu = () => {
           <Link
             to="vodka"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Vodka
@@ -38,7 +38,7 @@ const Menu = () => {
           <Link
             to="gin"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Gin
@@ -48,7 +48,7 @@ const Menu = () => {
           <Link
             to="rum"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Rum
@@ -58,7 +58,7 @@ const Menu = () => {
           <Link
             to="tiki"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Tiki
@@ -68,7 +68,7 @@ const Menu = () => {
           <Link
             to="other"
             smooth={true}
-            offset={50}
+            offset={-100}
             duration={750}
             hashSpy={true}>
             Other
