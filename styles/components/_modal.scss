@@ -3,10 +3,12 @@ body.active-modal {
 }
 
 .btn-modal {
-    padding: rem(10) rem(20);
+    padding: rem(8) rem(12);
     display: block;
-    margin: rem(100) auto 0;
-    font-size: rem(18);
+    @include font(18, 2.5, 25);
+    background-color: $light-purple;
+    text-transform: uppercase;
+    margin-top: rem(30);
 }
 
 .modal,
@@ -18,10 +20,11 @@ body.active-modal {
     right: 0;
     bottom: 0;
     position: fixed;
+    z-index: 100;
 }
 
 .overlay {
-    background: rgba(49, 49, 49, 0.8);
+    background: rgba(0, 0, 0, 0.75);
 }
 .modal-content {
     position: absolute;
@@ -29,7 +32,7 @@ body.active-modal {
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
+    background: $light-purple;
     padding: rem(14) rem(28);
     border-radius: rem(3);
     max-width: rem(600);
@@ -38,7 +41,25 @@ body.active-modal {
 
 .close-modal {
     position: absolute;
-    top: rem(10);
-    right: rem(10);
-    padding: rem(5) rem(7);
+    top: rem(-10);
+    right: rem(-10);
+    width: rem(30);
+    height: rem(30);
+    border-radius: 50%;
+    background-color: $light-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .close-icon {
+        width: rem(15);
+        height: rem(15);
+        margin-top: rem(-3);
+        svg {
+            path {
+                fill: $black;
+                stroke: $black;
+                stroke-width: rem(4);
+            }
+        }
+    }
 }

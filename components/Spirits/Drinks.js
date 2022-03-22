@@ -21,13 +21,10 @@ const Drinks = () => {
                       <div className="drink-indiv" key={name.toLowerCase()}>
                         <h3 className="drink-title">{name}</h3>
                         <p>{desc}</p>
-                        <Modal />
-                      
-                        <ul>
-                          {recipe.map( ( item, i )=> {
-                            return <li key={i}>{item}</li>;
-                          } )}
-                        </ul>
+                        <Modal 
+                          drinkName={name}
+                          recipe={recipe}
+                        />
                       </div>
                     );
                   } )}

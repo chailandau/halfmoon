@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import Drinks from "../components/Spirits/Drinks";
-import ArrowIcon from "../svg/ArrowIcon";
+import IconArrow from "../svg/IconArrow";
 let Scroll = require( "react-scroll" );
 let scroll = Scroll.animateScroll;
 
@@ -16,7 +16,7 @@ const Home = () => {
     <div>
       <Drinks />
       <a onClick={scrollTop}>
-        <ArrowIcon />
+        <IconArrow />
       </a>
      
     </div>

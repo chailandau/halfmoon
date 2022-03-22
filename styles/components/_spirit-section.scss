@@ -1,6 +1,6 @@
 .spirit-section {
     position: relative;
-    padding-bottom: rem(200);
+    padding-bottom: rem(100);
     &:nth-of-type(odd) {
         &:before {
             background-image: url(/img/cloud-light.svg);
@@ -25,5 +25,8 @@
         background-repeat: repeat-x;
         background-size: rem(1740) rem(260);
         pointer-events: none;
+    }
+    .drink-indiv {
+        margin-bottom: rem(100);
     }
 }

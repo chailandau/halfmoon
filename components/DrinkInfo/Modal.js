@@ -1,6 +1,7 @@
 import { useState } from "react";
+import IconClose from "../../svg/IconClose";
 
-const Modal = () => {
+const Modal = props => {
   const [ modal, setModal ] = useState( false );
   const toggleModal = () => {
     setModal( !modal );
@@ -17,7 +18,7 @@ const Modal = () => {
       <button 
         className="btn-modal"
         onClick={toggleModal}>
-            Open
+        {props.drinkName} recipe
       </button>
       { // show modal if state is true
         modal && (
@@ -27,11 +28,16 @@ const Modal = () => {
               onClick={toggleModal}
             >
               <div className="modal-content">
-                <h2>Hello Modal</h2>
+                <h2 className="drink-title">{props.drinkName}</h2>
+                <ul>
+                  {props.recipe.map( ( item, i )=> {
+                    return <li key={i}>{item}</li>;
+                  } )}
+                </ul>
                 <button 
                   className="close-modal"
                   onClick={toggleModal}>
-                    Close
+                  <IconClose />
                 </button>
               </div>
             </div>
