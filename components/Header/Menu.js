@@ -1,5 +1,5 @@
 import { Link } from "react-scroll";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Menu = () => {
   const [ hamburgerOpen, setHamburgerOpen ] = useState( false );
@@ -8,6 +8,17 @@ const Menu = () => {
     setHamburgerOpen( !hamburgerOpen );
     console.log( "toggle" );
   };
+
+  useEffect( () => {
+    let html = document.querySelector( "html" );
+    if ( hamburgerOpen ) {
+      html.classList.add( "nav-open" );
+    }
+    else {
+      html.classList.remove( "nav-open" );
+    }
+  }, [hamburgerOpen] );
+
   return (
     <>
       <button className="menu-toggle" onClick={toggleHamburger}>
@@ -15,7 +26,7 @@ const Menu = () => {
         <span className="middle line"></span>
         <span className="bottom line"></span>
       </button>
-      <nav className={hamburgerOpen ? "open" : null}>
+      <nav>
         <ul>
           <li>
             <Link

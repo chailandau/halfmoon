@@ -15,7 +15,7 @@ header {
         right: rem(24);
         width: rem(32);
         height: rem(20);
-        z-index: 1;
+        z-index: 11;
         span {
             &.line {
                 display: block;
@@ -72,40 +72,53 @@ header {
         }
     }
     nav {
-        padding-top: rem(85);
+        padding: rem(40);
         display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        &.open {
-            display: block;
-        }
+        background-color: $bright-purple;
+        z-index: 10;
+        overflow-y: auto;
         @include laptop {
             display: block;
+            padding: rem(85) 0 0 0;
             top: unset;
             left: unset;
             width: unset;
             height: unset;
+            background-color: unset;
+            overflow-y: unset;
         }
         ul {
             list-style-type: none;
-            padding: 0;
+            padding: rem(180) 0 0 0;
             margin: 0;
             color: $light-blue;
             text-transform: uppercase;
-            @include font(20, 5, 30);
+            @include font(28, 5, 30);
+            text-align: center;
             @include laptop {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                text-align: unset;
+                padding: unset;
+                @include font(20, 5, 30);
             }
             li {
                 a {
                     &:hover {
                         color: $light-blue;
                         text-decoration: underline;
+                    }
+                }
+                & + li {
+                    margin-top: rem(40);
+                    @include laptop {
+                        margin-top: unset;
                     }
                 }
             }
@@ -151,5 +164,19 @@ body.scrolled {
                 }
             }
         }
+    }
+}
+
+html.nav-open {
+    overflow: hidden;
+    .logo {
+        position: absolute;
+        width: rem(140);
+        z-index: 11;
+        top: rem(30);
+        left: calc(50% - 70px);
+    }
+    nav {
+        display: block;
     }
 }

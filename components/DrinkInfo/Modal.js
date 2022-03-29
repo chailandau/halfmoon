@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconClose from "../../svg/IconClose";
 
 const Modal = props => {
@@ -7,12 +7,16 @@ const Modal = props => {
     setModal( !modal );
   };
   // add active-modal class if modal is open
-  if ( modal ) {
-    document.body.classList.add( "active-modal" );
-  }
-  else {
-    document.body.classList.remove( "active-modal" );
-  }
+  useEffect( () => {
+    let html = document.querySelector( "html" );
+    if ( modal ) {
+      html.classList.add( "active-modal" );
+    }
+    else {
+      html.classList.remove( "active-modal" );
+    }
+  }, [modal] );
+ 
   return (
     <div>
       <button 
