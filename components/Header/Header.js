@@ -13,18 +13,22 @@ const scrollTop = () => {
 };
 
 const Header = () => {
-  const [ headerScroll, setHeaderScroll ] = useState( "false" );
-  const handleScroll = () => {
-  //  setHeaderScroll( !headerScroll );
-    console.log( window.scrollY );
-  };
-
+  const [ scrolled, setScrolled ] = useState( false );
   useEffect( () => {
-    window.addEventListener( "scroll", handleScroll );
-    return () => window.removeEventListener( "scroll", handleScroll );
-  } );
+    let body = document.querySelector( "body" );
+    window.onscroll = function() {
+      if ( window.scrollY > 300 ) {
+        setScrolled( true );
+        body.classList.add( "scrolled" ); 
+      }
+      else {
+        setScrolled( false );
+        body.classList.remove( "scrolled" ); 
+      }
+    };
+  }, [] );
   return (
-    <header onScroll={handleScroll}>
+    <header>
       <div className="big-wrapper">
         <div className="logo">
           <a onClick={scrollTop}>
