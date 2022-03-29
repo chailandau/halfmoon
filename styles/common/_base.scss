@@ -2,6 +2,7 @@ html {
     background-color: $bright-purple;
     @include font-nunito-light;
     color: $light-blue;
+    overflow-x: hidden;
 }
 
 .wrapper {

@@ -3,6 +3,46 @@ header {
     margin-bottom: rem(100);
     z-index: 2;
     width: 100%;
+
+    // mobile menu toggle
+    .menu-toggle {
+        display: block;
+        @include laptop {
+            display: none;
+        }
+        position: absolute;
+        top: rem(26);
+        right: rem(24);
+        width: rem(32);
+        height: rem(20);
+        z-index: 1;
+        span {
+            &.line {
+                display: block;
+                width: 100%;
+                height: rem(2);
+                background: $light-blue;
+                position: absolute;
+                transform: translateY(0) rotate(0deg);
+                transition: all 400ms ease-in-out;
+                &.top {
+                    top: 0;
+                }
+                &.middle {
+                    top: rem(9);
+                }
+                &.bottom {
+                    bottom: 0;
+                }
+            }
+        }
+        &:focus {
+            outline: rem(5) auto Highlight;
+            outline: -webkit-focus-ring-color auto rem(5);
+            outline-offset: rem(2);
+        }
+    }
+
     &:before {
         visibility: hidden;
         opacity: 0;
@@ -33,16 +73,34 @@ header {
     }
     nav {
         padding-top: rem(85);
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        &.open {
+            display: block;
+        }
+        @include laptop {
+            display: block;
+            top: unset;
+            left: unset;
+            width: unset;
+            height: unset;
+        }
         ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             list-style-type: none;
             padding: 0;
             margin: 0;
             color: $light-blue;
             text-transform: uppercase;
             @include font(20, 5, 30);
+            @include laptop {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
             li {
                 a {
                     &:hover {
