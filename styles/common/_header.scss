@@ -112,6 +112,7 @@ header {
                 padding: unset;
                 @include font(20, 5, 30);
             }
+
             li {
                 a {
                     &:hover {
@@ -164,12 +165,19 @@ body.scrolled {
             top: rem(15);
         }
         nav {
-            padding: 0;
+            @include laptop {
+                padding: 0;
+            }
             ul {
-                @include font(18, 4, 30);
+                @include laptop {
+                    @include font(18, 4, 30);
+                }
+
                 li {
                     & + li {
-                        margin-left: rem(50);
+                        @include laptop {
+                            margin-left: rem(50);
+                        }
                     }
                 }
             }
@@ -179,7 +187,6 @@ body.scrolled {
 
 html.nav-open {
     overflow: hidden;
-
     header {
         .menu-toggle {
             span {
@@ -199,5 +206,8 @@ html.nav-open {
         nav {
             display: block;
         }
+    }
+    .back-to-top {
+        display: none;
     }
 }

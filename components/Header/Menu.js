@@ -1,18 +1,37 @@
 import { Link } from "react-scroll";
 import { useState, useEffect } from "react";
 
+const Scroll = require( "react-scroll" );
+const scroll = Scroll.animateScroll;
+
+const scrollTop = () => {
+  // include this so it works with ssr
+  if ( typeof window !== "undefined" ) {
+    scroll.scrollToTop( { duration: 750 } );
+  }
+};
+
 const Menu = () => {
   const [ hamburgerOpen, setHamburgerOpen ] = useState( false );
 
   const toggleHamburger = () => {
     setHamburgerOpen( !hamburgerOpen );
-    console.log( "toggle" );
   };
 
   useEffect( () => {
     let html = document.querySelector( "html" );
+    let menuLinks = document.querySelectorAll( "header nav > ul > li > a" );
+
     if ( hamburgerOpen ) {
       html.classList.add( "nav-open" );
+      // close mobile menu if click on link
+      menuLinks.forEach( menuLink => {
+        menuLink.addEventListener( "click", ()=> {
+          html.classList.remove( "nav-open" );
+          // need to toggle state as well
+          setHamburgerOpen( !hamburgerOpen );
+        } );
+      } );
     }
     else {
       html.classList.remove( "nav-open" );
@@ -29,14 +48,10 @@ const Menu = () => {
       <nav>
         <ul>
           <li>
-            <Link
-              to="whiskey"
-              smooth={true}
-              offset={-100}
-              duration={750}
-              hashSpy={true}>
-            Whiskey
-            </Link>
+            <a 
+              onClick={scrollTop}>
+              Whiskey
+            </a>
           </li>
           <li>
             <Link
