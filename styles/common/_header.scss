@@ -1,8 +1,11 @@
 header {
-    padding: rem(35) 0 rem(100) 0;
+    padding: rem(35) 0 rem(50) 0;
     margin-bottom: rem(100);
     z-index: 2;
     width: 100%;
+    @include laptop {
+        padding: rem(35) 0 rem(100) 0;
+    }
 
     // mobile menu toggle
     .menu-toggle {
@@ -84,6 +87,7 @@ header {
         overflow-y: auto;
         @include laptop {
             display: block;
+            position: relative;
             padding: rem(85) 0 0 0;
             top: unset;
             left: unset;
@@ -127,7 +131,10 @@ header {
 }
 
 body.scrolled {
-    padding-top: rem(555);
+    padding-top: rem(388);
+    @include laptop {
+        padding-top: rem(553);
+    }
     header {
         position: fixed;
         top: 0;
@@ -152,6 +159,9 @@ body.scrolled {
                     display: none;
                 }
             }
+        }
+        .menu-toggle {
+            top: rem(15);
         }
         nav {
             padding: 0;

@@ -3,10 +3,16 @@ footer {
     position: relative;
     padding-bottom: rem(50);
     p {
-        @include font(18, 0, 16);
+        @include font(18, 0, 26);
         text-align: center;
         &:nth-of-type(2) {
             margin-top: rem(15);
+        }
+        span {
+            display: block;
+            @include laptop {
+                display: inline;
+            }
         }
     }
     &:before {

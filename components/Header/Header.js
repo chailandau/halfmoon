@@ -16,14 +16,27 @@ const Header = () => {
   const [ scrolled, setScrolled ] = useState( false );
   useEffect( () => {
     let body = document.querySelector( "body" );
+    let mobile = window.matchMedia( "(max-width: 991px)" );
     window.onscroll = function() {
-      if ( window.scrollY > 300 ) {
-        setScrolled( true );
-        body.classList.add( "scrolled" ); 
+      if ( mobile.matches ) {
+        if ( window.scrollY > 225 ) {
+          setScrolled( true );
+          body.classList.add( "scrolled" ); 
+        }
+        else {
+          setScrolled( false );
+          body.classList.remove( "scrolled" ); 
+        }
       }
       else {
-        setScrolled( false );
-        body.classList.remove( "scrolled" ); 
+        if ( window.scrollY > 300 ) {
+          setScrolled( true );
+          body.classList.add( "scrolled" ); 
+        }
+        else {
+          setScrolled( false );
+          body.classList.remove( "scrolled" ); 
+        }
       }
     };
   }, [] );
