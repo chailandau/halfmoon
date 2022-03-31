@@ -94,7 +94,7 @@ header {
         }
         ul {
             list-style-type: none;
-            padding: rem(180) 0 0 0;
+            padding: rem(45) 0 0 0;
             margin: 0;
             color: $light-blue;
             text-transform: uppercase;
@@ -169,14 +169,25 @@ body.scrolled {
 
 html.nav-open {
     overflow: hidden;
-    .logo {
-        position: absolute;
-        width: rem(140);
-        z-index: 11;
-        top: rem(30);
-        left: calc(50% - 70px);
-    }
-    nav {
-        display: block;
+
+    header {
+        .menu-toggle {
+            span {
+                &.line {
+                    &.top {
+                        transform: translateY(8px) rotate(40deg);
+                    }
+                    &.middle {
+                        opacity: 0;
+                    }
+                    &.bottom {
+                        transform: translateY(-10px) rotate(-40deg);
+                    }
+                }
+            }
+        }
+        nav {
+            display: block;
+        }
     }
 }
