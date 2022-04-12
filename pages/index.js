@@ -7,6 +7,17 @@ let scroll = Scroll.animateScroll;
 
 const Modal = dynamic(() => import("../components/DrinkInfo/Modal"), { ssr: false });
 
+// populated query for strapi
+const qs = require("qs");
+const query = qs.stringify(
+    {
+        populate: ["Drink", "Drink.Ingredients", "Drink.Instructions", "Drink.Optional"],
+        sort: "Order",
+    },
+
+    { encodeValuesOnly: true }
+);
+
 let scrollTop = () => {
     // include this so it works with ssr
     if (typeof window !== "undefined") {
@@ -16,36 +27,9 @@ let scrollTop = () => {
 
 const Home = ({ spirits }) => {
     const spiritType = spirits.data;
-    console.log(spiritType);
+    console.log(spiritType[0].attributes.Drink[0]);
     return (
         <div>
-            {DrinkList.map(({ spiritType, drinks }) => {
-                return (
-                    <div
-                        className="spirit-section"
-                        id={spiritType.toLowerCase()}
-                        key={spiritType.toLowerCase()}
-                    >
-                        <div className="wrapper">
-                            <div className="spirit-type">
-                                <h2 className="spirit-title">{spiritType}</h2>
-                                <div className="drinks">
-                                    {drinks.map(({ name, desc, recipe }) => {
-                                        return (
-                                            <div className="drink-indiv" key={name.toLowerCase()}>
-                                                <h3 className="drink-title">{name}</h3>
-                                                <p>{desc}</p>
-                                                <Modal drinkName={name} recipe={recipe} />
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            })}
-
             {spiritType.map(({ attributes, id }) => {
                 return (
                     <div
@@ -56,6 +40,33 @@ const Home = ({ spirits }) => {
                         <div className="wrapper">
                             <div className="spirit-type">
                                 <h2 className="spirit-title">{attributes.Name}</h2>
+                                <div className="drinks">
+                                    {attributes.Drink.map(
+                                        ({
+                                            Title,
+                                            Description,
+                                            Ingredients,
+                                            Instructions,
+                                            Optional,
+                                        }) => {
+                                            return (
+                                                <div
+                                                    className="drink-indiv"
+                                                    key={Title.toLowerCase()}
+                                                >
+                                                    <h3 className="drink-title">{Title}</h3>
+                                                    <p>{Description}</p>
+                                                    <Modal
+                                                        Title={Title}
+                                                        Ingredients={Ingredients}
+                                                        Instructions={Instructions}
+                                                        Optional={Optional}
+                                                    />
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -71,7 +82,7 @@ const Home = ({ spirits }) => {
 export default Home;
 
 export async function getStaticProps() {
-    const spiritsRes = await axios.get("http://localhost:1337/api/spirits");
+    const spiritsRes = await axios.get(`http://localhost:1337/api/spirits?${query}`);
     return {
         props: {
             spirits: spiritsRes.data,
