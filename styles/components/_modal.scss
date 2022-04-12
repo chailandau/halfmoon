@@ -40,6 +40,25 @@ html.active-modal {
     .drink-title {
         margin: 0;
     }
+    .instructions,
+    .optional {
+        position: relative;
+        margin-top: rem(50);
+        p {
+            font-style: italic;
+        }
+        &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: rem(1);
+            top: rem(-20);
+            left: 0;
+            z-index: -1;
+            background: $light-blue;
+        }
+    }
     ul {
         list-style-type: none;
         margin: rem(20) 0 0 rem(30);

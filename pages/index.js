@@ -27,7 +27,7 @@ let scrollTop = () => {
 
 const Home = ({ spirits }) => {
     const spiritType = spirits.data;
-    console.log(spiritType[0].attributes.Drink[0]);
+    console.log(spiritType[2].attributes.Drink[0]);
     return (
         <div>
             {spiritType.map(({ attributes, id }) => {
