@@ -10,6 +10,7 @@
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "axios": "^0.26.1",
+    "focus-trap-react": "^8.9.2",
     "next": "12.1.0",
     "node-sass": "^7.0.1",
     "react": "17.0.2",

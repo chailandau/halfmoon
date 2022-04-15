@@ -6,9 +6,16 @@ html.active-modal {
     padding: rem(8) rem(12);
     display: block;
     @include font(18, 2.5, 25);
-    background-color: $light-purple;
     text-transform: uppercase;
     margin-top: rem(30);
+    // first color is hover, second is normal
+    background: linear-gradient(to right, $black 50%, $light-purple 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 600ms ease-in-out;
+    &:hover {
+        background-position: left bottom;
+    }
 }
 
 .modal,
@@ -102,15 +109,30 @@ html.active-modal {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 0 rem(2) $light-blue;
+    transition: all 300ms ease-in-out;
     .close-icon {
         width: rem(15);
         height: rem(15);
         margin-top: rem(-3);
         svg {
+            transition: all 300ms ease-in-out;
             path {
                 fill: $black;
                 stroke: $black;
                 stroke-width: rem(4);
+            }
+        }
+    }
+    &:hover {
+        background-color: $black;
+        box-shadow: 0 0 0 rem(2) $light-blue;
+        .close-icon {
+            svg {
+                path {
+                    fill: $light-blue;
+                    stroke: $light-blue;
+                }
             }
         }
     }

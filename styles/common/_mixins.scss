@@ -17,6 +17,23 @@ $container-width: rem(1400);
     line-height: ($leading / $base-font-size) * 1rem;
 }
 
+// animated underline on hover
+@mixin underline-on-hover($color, $background-position-top, $background-height, $padding-bottom) {
+    display: inline;
+    text-decoration: none;
+    text-decoration-skip-ink: auto;
+    background-image: linear-gradient($color, $color);
+    background-position: 0% rem($background-position-top);
+    background-repeat: no-repeat;
+    background-size: 0% rem($background-height);
+    transition: background-size 300ms;
+    padding-bottom: rem($padding-bottom);
+    &:hover,
+    &:focus {
+        background-size: 96% rem($background-height);
+    }
+}
+
 // media queries
 
 @mixin tablet {

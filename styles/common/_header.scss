@@ -115,15 +115,25 @@ header {
 
             li {
                 a {
+                    @include underline-on-hover($light-blue, 30, 1, 7);
                     &:hover {
                         color: $light-blue;
-                        text-decoration: underline;
                     }
                 }
                 & + li {
                     margin-top: rem(40);
                     @include laptop {
                         margin-top: unset;
+                    }
+                }
+                button {
+                    display: inline-block !important;
+                    @include underline-on-hover($light-blue, 36, 1, 7);
+                    padding-top: rem(4);
+                    text-transform: uppercase;
+                    @include font(28, 5, 30);
+                    @include laptop {
+                        @include font(20, 5, 30);
                     }
                 }
             }
@@ -177,6 +187,17 @@ body.scrolled {
                     & + li {
                         @include laptop {
                             margin-left: rem(50);
+                        }
+                    }
+                    a {
+                        @include underline-on-hover($light-blue, 26, 1, 7);
+                    }
+                    button {
+                        @include underline-on-hover($light-blue, 33, 1, 7);
+                        @include laptop {
+                            display: inline-block !important;
+                            padding-bottom: rem(4) !important;
+                            @include font(18, 4, 30);
                         }
                     }
                 }

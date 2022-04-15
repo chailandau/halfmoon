@@ -4,6 +4,12 @@ html {
     color: $light-blue;
     overflow-x: hidden;
 }
+body.scrolled {
+    .back-to-top {
+        visibility: visible;
+        opacity: 1;
+    }
+}
 
 .wrapper {
     max-width: rem(850);
@@ -29,11 +35,15 @@ html {
     align-items: center;
     justify-content: center;
     z-index: 9;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
     svg {
         position: relative;
         width: rem(40);
         height: rem(40);
         margin-top: rem(-2);
+        transition: all 300ms ease-in-out;
         path {
             fill: $light-blue;
         }
@@ -50,6 +60,17 @@ html {
         background: $black;
         border-radius: 50%;
         box-shadow: 0 0 rem(13) rem(1) #2f2938;
+        transition: all 300ms ease-in-out;
+    }
+    &:hover {
+        &:before {
+            background-color: $light-blue;
+        }
+        svg {
+            path {
+                fill: $black;
+            }
+        }
     }
 }
 
