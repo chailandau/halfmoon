@@ -19,10 +19,15 @@ const Modal = (props) => {
             }
         };
 
+        const preventScroll = (e) => {
+            e.preventDefault();
+        };
+
         if (modal) {
             html.classList.add("active-modal");
             // only run once when modal is open
             document.addEventListener("keydown", closeModalEsc, { once: true });
+            document.addEventListener("touchmove", preventScroll, { once: true });
         } else {
             html.classList.remove("active-modal");
         }

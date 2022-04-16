@@ -63,9 +63,7 @@ header {
     .logo {
         width: rem(224);
         margin: auto;
-        a {
-            height: 100%;
-        }
+
         svg {
             width: 100%;
             height: auto;
@@ -81,7 +79,7 @@ header {
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 110vh;
         background-color: $bright-purple;
         z-index: 10;
         overflow-y: auto;
@@ -115,7 +113,10 @@ header {
 
             li {
                 a {
-                    @include underline-on-hover($light-blue, 30, 1, 7);
+                    @include underline-on-hover($light-blue, 36, 1, 7);
+                    @include laptop {
+                        @include underline-on-hover($light-blue, 30, 1, 7);
+                    }
                     &:hover {
                         color: $light-blue;
                     }
@@ -176,8 +177,9 @@ body.scrolled {
         }
         nav {
             @include laptop {
-                padding: 0;
+                padding: 0 rem(50) 0 0;
             }
+
             ul {
                 @include laptop {
                     @include font(18, 4, 30);
@@ -190,11 +192,15 @@ body.scrolled {
                         }
                     }
                     a {
-                        @include underline-on-hover($light-blue, 26, 1, 7);
+                        @include underline-on-hover($light-blue, 36, 1, 7);
+                        @include laptop {
+                            @include underline-on-hover($light-blue, 26, 1, 7);
+                        }
                     }
                     button {
-                        @include underline-on-hover($light-blue, 33, 1, 7);
+                        @include underline-on-hover($light-blue, 36, 1, 7);
                         @include laptop {
+                            @include underline-on-hover($light-blue, 33, 1, 7);
                             display: inline-block !important;
                             padding-bottom: rem(4) !important;
                             @include font(18, 4, 30);
