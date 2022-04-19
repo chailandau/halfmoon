@@ -1,5 +1,4 @@
 import axios from "axios";
-import { DrinkList } from "../components/DrinkInfo/DrinkList";
 import dynamic from "next/dynamic";
 import IconArrow from "../svg/IconArrow";
 let Scroll = require("react-scroll");
@@ -11,7 +10,7 @@ const Modal = dynamic(() => import("../components/DrinkInfo/Modal"), { ssr: fals
 const qs = require("qs");
 const query = qs.stringify(
     {
-        populate: ["Drink", "Drink.Ingredients", "Drink.Instructions", "Drink.Optional"],
+        populate: ["Drinks", "Drinks.Ingredients", "Drinks.Instructions", "Drinks.Optional"],
         sort: "Order",
     },
 
@@ -27,7 +26,8 @@ let scrollTop = () => {
 
 const Home = ({ spirits }) => {
     const spiritType = spirits.data;
-    console.log(spiritType[2].attributes.Drink[0]);
+    // console.log(spiritType);
+    // console.log(spiritType[2].attributes.Drinks[0]);
     return (
         <div>
             {spiritType.map(({ attributes, id }) => {
@@ -41,7 +41,7 @@ const Home = ({ spirits }) => {
                             <div className="spirit-type">
                                 <h2 className="spirit-title">{attributes.Name}</h2>
                                 <div className="drinks">
-                                    {attributes.Drink.map(
+                                    {attributes.Drinks.map(
                                         ({
                                             Title,
                                             Description,
@@ -82,7 +82,7 @@ const Home = ({ spirits }) => {
 export default Home;
 
 export async function getStaticProps() {
-    const spiritsRes = await axios.get(`http://localhost:1337/api/spirits?${query}`);
+    const spiritsRes = await axios.get(`${process.env.STRAPI_API_URL}/spirits?${query}`);
     return {
         props: {
             spirits: spiritsRes.data,
