@@ -84,6 +84,7 @@ export default Home;
 export async function getStaticProps() {
     const spiritsRes = await axios.get(`${process.env.STRAPI_API_URL}/spirits?${query}`);
     return {
+        revalidate: 1,
         props: {
             spirits: spiritsRes.data,
         },
