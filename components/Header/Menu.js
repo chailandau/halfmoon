@@ -20,6 +20,8 @@ const Menu = () => {
     };
 
     useEffect(() => {
+        const mobileBreakpoint = window.matchMedia("(max-width: 1199px)");
+
         let html = document.querySelector("html");
         let menuLinks = document.querySelectorAll("header nav > ul > li > a");
         let menuButton = document.querySelector("header nav > ul > li > button");
@@ -42,6 +44,15 @@ const Menu = () => {
         } else {
             html.classList.remove("nav-open");
         }
+
+        window.addEventListener("resize", () => {
+            setTimeout(() => {
+                // remove nav open and reset state on resize
+                if (hamburgerOpen && !mobileBreakpoint.matches) {
+                    closeMenu();
+                }
+            }, 200);
+        });
     }, [hamburgerOpen]);
 
     return (
