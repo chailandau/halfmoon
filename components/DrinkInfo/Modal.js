@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import IconClose from "../../svg/IconClose";
 import FocusTrap from "focus-trap-react";
 
-const Modal = (props) => {
+const Modal = ({ attributes }) => {
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
@@ -37,7 +37,7 @@ const Modal = (props) => {
     return (
         <div>
             <button className="btn-modal" onClick={toggleModal}>
-                {props.Title} recipe
+                {attributes.Title} recipe
             </button>
 
             {
@@ -47,35 +47,39 @@ const Modal = (props) => {
                         <div className="modal">
                             <div className="overlay" onClick={toggleModal}>
                                 <div className="modal-content">
-                                    <h2 className="drink-title">{props.Title}</h2>
+                                    <h2 className="drink-title">{attributes.Title}</h2>
                                     <ul>
-                                        {props.Ingredients.map((recipe, id) => {
+                                        {attributes.Ingredients.map((recipe, id) => {
                                             return <li key={id}>{recipe.Ingredient}</li>;
                                         })}
                                     </ul>
 
                                     {
                                         // show instructions only if they exist
-                                        props.Instructions.length != 0 && (
+                                        attributes.Instructions.length != 0 && (
                                             <div className="instructions">
                                                 <p>Instructions:</p>
                                                 <ul>
-                                                    {props.Instructions.map((instructions, id) => {
-                                                        return (
-                                                            <li key={id}>{instructions.Step}</li>
-                                                        );
-                                                    })}
+                                                    {attributes.Instructions.map(
+                                                        (instructions, id) => {
+                                                            return (
+                                                                <li key={id}>
+                                                                    {instructions.Step}
+                                                                </li>
+                                                            );
+                                                        }
+                                                    )}
                                                 </ul>
                                             </div>
                                         )
                                     }
                                     {
                                         // show optional only if it exists
-                                        props.Optional.length != 0 && (
+                                        attributes.Optional.length != 0 && (
                                             <div className="optional">
                                                 <p>Optional:</p>
                                                 <ul>
-                                                    {props.Optional.map((options, id) => {
+                                                    {attributes.Optional.map((options, id) => {
                                                         return <li key={id}>{options.Optional}</li>;
                                                     })}
                                                 </ul>

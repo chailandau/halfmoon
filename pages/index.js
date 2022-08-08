@@ -27,7 +27,8 @@ let scrollTop = () => {
 const Home = ({ spirits }) => {
     const spiritType = spirits.data;
     // console.log(spiritType);
-    // console.log(spiritType[2].attributes.Drinks[0]);
+    // console.log(spiritType[2].attributes.Name);
+    // console.log(spiritType[2].attributes.Drinks.data[0].attributes);
     return (
         <div>
             {spiritType.map(({ attributes, id }) => {
@@ -41,31 +42,18 @@ const Home = ({ spirits }) => {
                             <div className="spirit-type">
                                 <h2 className="spirit-title">{attributes.Name}</h2>
                                 <div className="drinks">
-                                    {attributes.Drinks.map(
-                                        ({
-                                            Title,
-                                            Description,
-                                            Ingredients,
-                                            Instructions,
-                                            Optional,
-                                        }) => {
-                                            return (
-                                                <div
-                                                    className="drink-indiv"
-                                                    key={Title.toLowerCase()}
-                                                >
-                                                    <h3 className="drink-title">{Title}</h3>
-                                                    <p>{Description}</p>
-                                                    <Modal
-                                                        Title={Title}
-                                                        Ingredients={Ingredients}
-                                                        Instructions={Instructions}
-                                                        Optional={Optional}
-                                                    />
-                                                </div>
-                                            );
-                                        }
-                                    )}
+                                    {attributes.Drinks.data.map(({ attributes }) => {
+                                        return (
+                                            <div
+                                                className="drink-indiv"
+                                                key={attributes.Title.toLowerCase()}
+                                            >
+                                                <h3 className="drink-title">{attributes.Title}</h3>
+                                                <p>{attributes.Description}</p>
+                                                <Modal attributes={attributes} />
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
