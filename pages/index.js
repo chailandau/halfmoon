@@ -76,5 +76,6 @@ export async function getStaticProps() {
         props: {
             spirits: spiritsRes.data,
         },
+        fallback: false,
     };
 }
