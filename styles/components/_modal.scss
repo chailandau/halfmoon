@@ -8,6 +8,7 @@ html.active-modal {
     @include font(18, 2.5, 25);
     text-transform: uppercase;
     margin-top: rem(30);
+    word-break: break-word;
     // first color is hover, second is normal
     background: linear-gradient(to right, $black 50%, $light-purple 50%);
     background-size: 200% 100%;
