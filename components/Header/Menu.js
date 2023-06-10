@@ -36,7 +36,7 @@ const Menu = () => {
         if (hamburgerOpen) {
             html.classList.add("nav-open");
             // close mobile menu if click on link
-            menuLinks.forEach((menuLink) => {
+            menuLinks?.forEach((menuLink) => {
                 menuLink.addEventListener("click", closeMenu);
             });
             // add in for first button too (not an a tag)

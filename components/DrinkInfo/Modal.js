@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import IconClose from "../../svg/IconClose";
 import FocusTrap from "focus-trap-react";
 
-const Modal = ({ attributes }) => {
+const Modal = (data) => {
     const [modal, setModal] = useState(false);
+
+    const drink = data.data;
     const toggleModal = () => {
         setModal(!modal);
     };
@@ -37,7 +39,7 @@ const Modal = ({ attributes }) => {
     return (
         <div>
             <button className="btn-modal" onClick={toggleModal}>
-                {attributes.Title} recipe
+                {drink?.title} recipe
             </button>
 
             {
@@ -47,40 +49,36 @@ const Modal = ({ attributes }) => {
                         <div className="modal">
                             <div className="overlay" onClick={toggleModal}>
                                 <div className="modal-content">
-                                    <h2 className="drink-title">{attributes.Title}</h2>
+                                    <h2 className="drink-title">{drink?.title}</h2>
                                     <ul>
-                                        {attributes.Ingredients.map((recipe, id) => {
-                                            return <li key={id}>{recipe.Ingredient}</li>;
+                                        {drink?.ingredients?.map((data) => {
+                                            return <li key={data.id}>{data.ingredient}</li>;
                                         })}
                                     </ul>
 
                                     {
                                         // show instructions only if they exist
-                                        attributes.Instructions.length != 0 && (
+                                        drink?.instructions?.length != 0 && (
                                             <div className="instructions">
                                                 <p>Instructions:</p>
                                                 <ul>
-                                                    {attributes.Instructions.map(
-                                                        (instructions, id) => {
-                                                            return (
-                                                                <li key={id}>
-                                                                    {instructions.Step}
-                                                                </li>
-                                                            );
-                                                        }
-                                                    )}
+                                                    {drink?.instructions?.map((data) => {
+                                                        return <li key={data.id}>{data.step}</li>;
+                                                    })}
                                                 </ul>
                                             </div>
                                         )
                                     }
                                     {
                                         // show optional only if it exists
-                                        attributes.Optional.length != 0 && (
+                                        drink?.optional?.length != 0 && (
                                             <div className="optional">
                                                 <p>Optional:</p>
                                                 <ul>
-                                                    {attributes.Optional.map((options, id) => {
-                                                        return <li key={id}>{options.Optional}</li>;
+                                                    {drink?.optional?.map((data) => {
+                                                        return (
+                                                            <li key={data.id}>{data.optional}</li>
+                                                        );
                                                     })}
                                                 </ul>
                                             </div>

@@ -6,17 +6,6 @@ let scroll = Scroll.animateScroll;
 
 const Modal = dynamic(() => import("../components/DrinkInfo/Modal"), { ssr: false });
 
-// populated query for strapi
-const qs = require("qs");
-const query = qs.stringify(
-    {
-        populate: ["Drinks", "Drinks.Ingredients", "Drinks.Instructions", "Drinks.Optional"],
-        sort: "Order",
-    },
-
-    { encodeValuesOnly: true }
-);
-
 let scrollTop = () => {
     // include this so it works with ssr
     if (typeof window !== "undefined") {
@@ -25,32 +14,25 @@ let scrollTop = () => {
 };
 
 const Home = ({ spirits }) => {
-    const spiritType = spirits.data;
-    // console.log(spiritType);
-    // console.log(spiritType[2].attributes.Name);
-    // console.log(spiritType[2].attributes.Drinks.data[0].attributes);
     return (
         <div>
-            {spiritType.map(({ attributes, id }) => {
+            {spirits?.map((spirit) => {
                 return (
                     <div
                         className="spirit-section"
-                        id={attributes.Name.toLowerCase()}
-                        key={attributes.Name.toLowerCase()}
+                        id={spirit?.title?.toLowerCase()}
+                        key={spirit?.title}
                     >
                         <div className="wrapper">
                             <div className="spirit-type">
-                                <h2 className="spirit-title">{attributes.Name}</h2>
+                                <h2 className="spirit-title">{spirit.title}</h2>
                                 <div className="drinks">
-                                    {attributes.Drinks.data.map(({ attributes }) => {
+                                    {spirit?.drinks?.map((drink) => {
                                         return (
-                                            <div
-                                                className="drink-indiv"
-                                                key={attributes.Title.toLowerCase()}
-                                            >
-                                                <h3 className="drink-title">{attributes.Title}</h3>
-                                                <p>{attributes.Description}</p>
-                                                <Modal attributes={attributes} />
+                                            <div className="drink-indiv" key={drink.title}>
+                                                <h3 className="drink-title">{drink.title}</h3>
+                                                {drink?.description && <p>{drink.description}</p>}
+                                                <Modal data={drink} />
                                             </div>
                                         );
                                     })}
@@ -70,11 +52,11 @@ const Home = ({ spirits }) => {
 export default Home;
 
 export async function getStaticProps() {
-    const spiritsRes = await axios.get(`${process.env.STRAPI_API_URL}/spirits?${query}`);
+    const spiritsRes = await axios.get(`${process.env.PAYLOAD_API_URL}/spirits/`);
     return {
         revalidate: 1,
         props: {
-            spirits: spiritsRes.data,
+            spirits: spiritsRes.data.docs,
         },
     };
 }
