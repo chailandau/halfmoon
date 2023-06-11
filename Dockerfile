@@ -1,5 +1,9 @@
 FROM node:14
 
+ARG PAYLOAD_API_URL=${PAYLOAD_API_URL}
+ENV PAYLOAD_API_URL=${PAYLOAD_API_URL}
+
+
 WORKDIR /app
 
 RUN apt-get update && \
